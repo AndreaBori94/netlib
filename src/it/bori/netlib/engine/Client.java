@@ -1,11 +1,9 @@
 package it.bori.netlib.engine;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 import javax.swing.SwingUtilities;
 
@@ -48,8 +46,7 @@ public class Client {
 				});
 				while (!closed) {
 					os.println(inputLine.readLine().trim());
-				}
-				
+				}				
 				os.close();
 				is.close();
 				clientSocket.close();

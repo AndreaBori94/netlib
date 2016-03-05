@@ -1,6 +1,5 @@
 package it.bori.netlib.engine;
 
-import java.io.IOException;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
