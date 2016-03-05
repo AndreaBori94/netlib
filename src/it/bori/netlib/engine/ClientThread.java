@@ -1,7 +1,6 @@
 package it.bori.netlib.engine;
 
 import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
@@ -127,10 +126,6 @@ public class ClientThread extends Thread {
 					}
 				}
 			}
-			/*
-			 * Close the output stream, close the input stream, close the
-			 * socket.
-			 */
 			is.close();
 			os.close();
 			clientSocket.close();
