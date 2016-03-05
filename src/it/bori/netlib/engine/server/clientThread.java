@@ -5,16 +5,16 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.net.Socket;
 
-public class clientThread extends Thread {
+public class ClientThread extends Thread {
 
 	private String clientName = null;
 	private DataInputStream is = null;
 	private PrintStream os = null;
 	private Socket clientSocket = null;
-	private final clientThread[] threads;
+	private final ClientThread[] threads;
 	private int maxClientsCount;
 
-	public clientThread(Socket clientSocket, clientThread[] threads) {
+	public ClientThread(Socket clientSocket, ClientThread[] threads) {
 		this.clientSocket = clientSocket;
 		this.threads = threads;
 		maxClientsCount = threads.length;
@@ -22,7 +22,7 @@ public class clientThread extends Thread {
 
 	public void run() {
 		int maxClientsCount = this.maxClientsCount;
-		clientThread[] threads = this.threads;
+		ClientThread[] threads = this.threads;
 
 		try {
 			/*
