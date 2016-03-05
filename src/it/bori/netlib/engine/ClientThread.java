@@ -26,7 +26,8 @@ public class ClientThread extends Thread {
 		ClientThread[] threads = this.threads;
 
 		try {
-			is = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+			is = new BufferedReader(new InputStreamReader(
+					clientSocket.getInputStream()));
 			os = new PrintStream(clientSocket.getOutputStream());
 			String name;
 			while (true) {
@@ -74,7 +75,7 @@ public class ClientThread extends Thread {
 													.equals(words[0])) {
 										threads[i].os.println("<" + name + "> "
 												+ words[1]);
-										
+
 										this.os.println(">" + name + "> "
 												+ words[1]);
 										break;
@@ -116,6 +117,7 @@ public class ClientThread extends Thread {
 			os.close();
 			clientSocket.close();
 		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

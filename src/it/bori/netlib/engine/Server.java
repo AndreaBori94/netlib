@@ -57,14 +57,14 @@ public class Server {
 								os.close();
 								clientSocket.close();
 							}
-						} catch (IOException e) {
-							System.out.println(e);
+						} catch (Exception e) {
+							e.printStackTrace();
 						}
 					}
 				}
 			});
-		} catch (IOException e) {
-			System.out.println(e);
+		} catch (Exception e) {
+e.printStackTrace();
 		}
 	}
 

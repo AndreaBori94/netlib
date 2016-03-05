@@ -24,19 +24,13 @@ public class Client {
 			inputLine = new BufferedReader(new InputStreamReader(System.in));
 			os = new PrintStream(clientSocket.getOutputStream());
 			is = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-		} catch (UnknownHostException e) {
-			System.err.println("Don't know about host " + host);
-		} catch (IOException e) {
-			System.err
-					.println("Couldn't get I/O for the connection to the host "
-							+ host);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		if (clientSocket != null && os != null && is != null) {
 			try {
-
 				SwingUtilities.invokeLater(new Runnable() {
-					
 					@Override
 					public void run() {
 						String responseLine;
@@ -47,8 +41,8 @@ public class Client {
 									break;
 							}
 							closed = true;
-						} catch (IOException e) {
-							System.err.println("IOException:  " + e);
+						} catch (Exception e) {
+							e.printStackTrace();
 						}
 					}
 				});
@@ -59,8 +53,8 @@ public class Client {
 				os.close();
 				is.close();
 				clientSocket.close();
-			} catch (IOException e) {
-				System.err.println("IOException:  " + e);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 	}
