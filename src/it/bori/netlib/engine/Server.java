@@ -47,10 +47,11 @@ public class Server {
 								if (threads[i] == null) {
 									(threads[i] = new ClientThread(
 											clientSocket, threads)).start();
+									System.out.println("new user");
 									break;
 								}
 							}
-							if (i == maxClientsCount) {
+							if (i >= maxClientsCount) {
 								PrintStream os = new PrintStream(clientSocket
 										.getOutputStream());
 								os.println("Server too busy. Try later.");
