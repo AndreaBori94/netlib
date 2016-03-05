@@ -10,14 +10,32 @@ import javax.swing.SwingUtilities;
 public class Server {
 	private ServerSocket serverSocket = null;
 	private Socket clientSocket = null;
-	private final int maxClientsCount = 9999;
-	private final ClientThread[] threads = new ClientThread[maxClientsCount];
+	private int maxClientsCount;
+	private ClientThread[] threads;
 	private int port;
 
-	public Server(int port) {
-		this.port = port;
+	public void setPort(int p) {
+		this.port = p;
+	}
+
+	public int getPort() {
+		return this.port;
+	}
+
+	public void setMaxClient(int mcc) {
+		this.maxClientsCount = mcc;
+	}
+
+	public int getMaxClient() {
+		return this.maxClientsCount;
+	}
+
+	public Server(int port, int maxClient) {
+		setPort(port);
+		setMaxClient(maxClient);
+		threads = new ClientThread[getMaxClient()];
 		try {
-			serverSocket = new ServerSocket(this.port);
+			serverSocket = new ServerSocket(getPort());
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
@@ -27,8 +45,8 @@ public class Server {
 							int i = 0;
 							for (i = 0; i < maxClientsCount; i++) {
 								if (threads[i] == null) {
-									(threads[i] = new ClientThread(clientSocket,
-											threads)).start();
+									(threads[i] = new ClientThread(
+											clientSocket, threads)).start();
 									break;
 								}
 							}
