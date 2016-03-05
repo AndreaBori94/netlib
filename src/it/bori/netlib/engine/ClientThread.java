@@ -26,9 +26,6 @@ public class ClientThread extends Thread {
 		ClientThread[] threads = this.threads;
 
 		try {
-			/*
-			 * Create input and output streams for this client.
-			 */
 			is = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			os = new PrintStream(clientSocket.getOutputStream());
 			String name;
@@ -42,7 +39,6 @@ public class ClientThread extends Thread {
 				}
 			}
 
-			/* Welcome the new the client. */
 			os.println("Welcome " + name
 					+ " to our chat room.\nTo leave enter /quit in a new line.");
 			synchronized (this) {
@@ -59,13 +55,11 @@ public class ClientThread extends Thread {
 					}
 				}
 			}
-			/* Start the conversation. */
 			while (true) {
 				String line = is.readLine();
 				if (line.startsWith("/quit")) {
 					break;
 				}
-				/* If the message is private sent it to the given client. */
 				if (line.startsWith("@")) {
 					String[] words = line.split("\\s", 2);
 					if (words.length > 1 && words[1] != null) {
@@ -80,10 +74,7 @@ public class ClientThread extends Thread {
 													.equals(words[0])) {
 										threads[i].os.println("<" + name + "> "
 												+ words[1]);
-										/*
-										 * Echo this message to let the client
-										 * know the private message was sent.
-										 */
+										
 										this.os.println(">" + name + "> "
 												+ words[1]);
 										break;
@@ -93,7 +84,6 @@ public class ClientThread extends Thread {
 						}
 					}
 				} else {
-					/* The message is public, broadcast it to all other clients. */
 					synchronized (this) {
 						for (int i = 0; i < maxClientsCount; i++) {
 							if (threads[i] != null
@@ -115,10 +105,6 @@ public class ClientThread extends Thread {
 			}
 			os.println("*** Bye " + name + " ***");
 
-			/*
-			 * Clean up. Set the current thread variable to null so that a new
-			 * client could be accepted by the server.
-			 */
 			synchronized (this) {
 				for (int i = 0; i < maxClientsCount; i++) {
 					if (threads[i] == this) {

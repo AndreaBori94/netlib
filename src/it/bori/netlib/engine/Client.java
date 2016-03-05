@@ -35,7 +35,6 @@ public class Client {
 		if (clientSocket != null && os != null && is != null) {
 			try {
 
-				/* Create a thread to read from the server. */
 				SwingUtilities.invokeLater(new Runnable() {
 					
 					@Override
