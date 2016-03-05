@@ -1,4 +1,4 @@
-package it.bori.netlib.engine.server;
+package it.bori.netlib.engine;
 
 import java.io.DataInputStream;
 import java.io.IOException;

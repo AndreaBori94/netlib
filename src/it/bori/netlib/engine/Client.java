@@ -1,4 +1,4 @@
-package it.bori.netlib.engine.client;
+package it.bori.netlib.engine;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;

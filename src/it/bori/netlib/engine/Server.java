@@ -1,4 +1,4 @@
-package it.bori.netlib.engine.server;
+package it.bori.netlib.engine;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -18,7 +18,6 @@ public class Server {
 		this.port = port;
 		try {
 			serverSocket = new ServerSocket(this.port);
-			
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
