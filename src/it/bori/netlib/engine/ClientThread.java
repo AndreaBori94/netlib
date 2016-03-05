@@ -1,14 +1,16 @@
 package it.bori.netlib.engine;
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
 
 public class ClientThread extends Thread {
 
 	private String clientName = null;
-	private DataInputStream is = null;
+	private BufferedReader is = null;
 	private PrintStream os = null;
 	private Socket clientSocket = null;
 	private final ClientThread[] threads;
@@ -28,7 +30,7 @@ public class ClientThread extends Thread {
 			/*
 			 * Create input and output streams for this client.
 			 */
-			is = new DataInputStream(clientSocket.getInputStream());
+			is = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			os = new PrintStream(clientSocket.getOutputStream());
 			String name;
 			while (true) {

@@ -1,7 +1,6 @@
 package it.bori.netlib.engine;
 
 import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
@@ -14,7 +13,7 @@ public class Client {
 
 	private Socket clientSocket = null;
 	private PrintStream os = null;
-	private DataInputStream is = null;
+	private BufferedReader is = null;
 	private BufferedReader inputLine = null;
 	private boolean closed = false;
 	
@@ -24,7 +23,7 @@ public class Client {
 			clientSocket = new Socket(host, port);
 			inputLine = new BufferedReader(new InputStreamReader(System.in));
 			os = new PrintStream(clientSocket.getOutputStream());
-			is = new DataInputStream(clientSocket.getInputStream());
+			is = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 		} catch (UnknownHostException e) {
 			System.err.println("Don't know about host " + host);
 		} catch (IOException e) {
