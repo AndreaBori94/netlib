@@ -3,12 +3,10 @@ package it.bori.netlib.engine;
 import it.bori.netlib.engine.client.Client;
 import it.bori.netlib.engine.server.Server;
 
-public abstract class Application {
+public abstract class Application_client {
 
 	public static void main(String[] args) {
-		Server s = new Server(2222);
-		s.run();
-		
+			
 		Client c = new Client("localhost", 2222);
 	}
 
